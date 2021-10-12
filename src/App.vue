@@ -8,7 +8,7 @@
   <div>
     <h4>{{ products[0] }}</h4>
     <p>50 만원</p>
-    <button @click="reportNum++">허위매물신고</button>
+    <button @click="increase">허위매물신고</button>
     <span>신고수: {{ reportNum }}</span>
     <!-- v-on:   대신 @ 사용이 가능하다 
     mouseover 등의 다른 이벤트도 다양하다-->
@@ -36,6 +36,13 @@ export default {
       menus: ["Home", "Shop", "About"],
       products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
     };
+  },
+  // 함수 만드는 공간
+  methods: {
+    increase() {
+      // this는 필수
+      this.reportNum += 1;
+    },
   },
   components: {},
 };
