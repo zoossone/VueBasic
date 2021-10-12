@@ -8,18 +8,22 @@
   <div>
     <h4>{{ products[0] }}</h4>
     <p>50 만원</p>
-    <button @click="increase">허위매물신고</button>
-    <span>신고수: {{ reportNum }}</span>
+    <button @click="increase(0)">허위매물신고</button>
+    <span>신고수: {{ reportNum[0] }}</span>
     <!-- v-on:   대신 @ 사용이 가능하다 
     mouseover 등의 다른 이벤트도 다양하다-->
   </div>
   <div>
     <h4>{{ products[1] }}</h4>
     <p>60 만원</p>
+    <button @click="increase(1)">허위매물신고</button>
+    <span>신고수: {{ reportNum[1] }}</span>
   </div>
   <div>
     <h4>{{ products[2] }}</h4>
     <p>70 만원</p>
+    <button @click="increase(2)">허위매물신고</button>
+    <span>신고수: {{ reportNum[2] }}</span>
   </div>
 </template>
 
@@ -32,16 +36,16 @@ export default {
   // :속성="데이타이름"
   data() {
     return {
-      reportNum: 0,
+      reportNum: [0, 0, 0],
       menus: ["Home", "Shop", "About"],
       products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
     };
   },
   // 함수 만드는 공간
   methods: {
-    increase() {
+    increase(num) {
       // this는 필수
-      this.reportNum += 1;
+      this.reportNum[num] += 1;
     },
   },
   components: {},
