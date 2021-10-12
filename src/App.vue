@@ -21,30 +21,16 @@
     v-on:   대신 @ 사용이 가능하다 
     mouseover 등의 다른 이벤트도 다양하다-->
   <!-- </div> -->
-  <div>
-    <img src="./assets/images/room0.jpg" class="room-img" />
-    <h4 @click="modalState = true">{{ products[0] }}</h4>
-    <p>50 만원</p>
-    <button @click="increase(0)">허위매물신고</button>
-    <span>신고수: {{ reportNum[0] }}</span>
-  </div>
-  <div>
-    <img src="./assets/images/room1.jpg" class="room-img" />
-    <h4 @click="modalState = true">{{ products[1] }}</h4>
-    <p>60 만원</p>
-    <button @click="increase(1)">허위매물신고</button>
-    <span>신고수: {{ reportNum[1] }}</span>
-  </div>
-  <div>
-    <img src="./assets/images/room2.jpg" class="room-img" />
-    <h4 @click="modalState = true">{{ products[2] }}</h4>
-    <p>70 만원</p>
-    <button @click="increase(2)">허위매물신고</button>
-    <span>신고수: {{ reportNum[2] }}</span>
+  <div v-for="(a, i) in onerooms" :key="i">
+    <img :src="onerooms[i].image" class="room-img" />
+    <h4>{{ onerooms[i].title }}</h4>
+    <p>{{ onerooms[i].price }}</p>
   </div>
 </template>
 
 <script>
+import onerooms from "./onerooms";
+
 export default {
   name: "App",
   // 데이터 바인딩. data를 변경하면 data와 관련한 HTML에도 실시간으로 반영됨. {{}} 대신 이렇게 데이터 바인딩이 되어있어야 함.
@@ -55,11 +41,9 @@ export default {
   // Vue를 개발할떄는 데이터를 어떻게 할지 생각하며 만드는 것이 좋다.
   data() {
     return {
+      onerooms: onerooms,
       modalState: false,
-      reportNum: [0, 0, 0],
-      price: [50, 60, 70],
       menus: ["Home", "Shop", "About"],
-      products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
     };
   },
   // 함수 만드는 공간
