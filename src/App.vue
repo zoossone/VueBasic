@@ -1,30 +1,47 @@
 <template>
+  <div class="black-bg" v-if="modalState === true">
+    <div class="white-bg">
+      <h4>상세페이지</h4>
+      <p>상세페이지 내용</p>
+      <button @click="modalState = false">닫기</button>
+    </div>
+  </div>
+
   <div class="menu">
     <!-- 반복문 사용법 v-for="XX in num" :ket="XX" -->
     <!-- 숫자 부분에 데이터를 넣을 수 있음 -->
     <a v-for="(a, i) in menus" :key="i">{{ a }}</a>
   </div>
 
-  <div v-for="(a, i) in products" :key="i">
+  <!-- <div v-for="(a, i) in products" :key="i">
     <h4>{{ a }}</h4>
     <p>{{ price[i] }} 만원</p>
     <button @click="increase(i)">허위매물신고</button>
     <span>신고수: {{ reportNum[i] }}</span>
-    <!-- v-on:   대신 @ 사용이 가능하다 
+    v-on:   대신 @ 사용이 가능하다 
     mouseover 등의 다른 이벤트도 다양하다-->
+  <!-- </div> -->
+  <div>
+    <img src="./assets/images/room0.jpg" class="room-img" />
+    <h4 @click="modalState = true">{{ products[0] }}</h4>
+    <p>50 만원</p>
+    <button @click="increase(0)">허위매물신고</button>
+    <span>신고수: {{ reportNum[0] }}</span>
   </div>
-  <!-- <div>
-    <h4>{{ products[1] }}</h4>
+  <div>
+    <img src="./assets/images/room1.jpg" class="room-img" />
+    <h4 @click="modalState = true">{{ products[1] }}</h4>
     <p>60 만원</p>
     <button @click="increase(1)">허위매물신고</button>
     <span>신고수: {{ reportNum[1] }}</span>
   </div>
   <div>
-    <h4>{{ products[2] }}</h4>
+    <img src="./assets/images/room2.jpg" class="room-img" />
+    <h4 @click="modalState = true">{{ products[2] }}</h4>
     <p>70 만원</p>
     <button @click="increase(2)">허위매물신고</button>
     <span>신고수: {{ reportNum[2] }}</span>
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -38,6 +55,7 @@ export default {
   // Vue를 개발할떄는 데이터를 어떻게 할지 생각하며 만드는 것이 좋다.
   data() {
     return {
+      modalState: false,
       reportNum: [0, 0, 0],
       price: [50, 60, 70],
       menus: ["Home", "Shop", "About"],
@@ -56,6 +74,31 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+div {
+  box-sizing: border-box;
+}
+.black-bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+}
+.white-bg {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.room-img {
+  width: 50%;
+  margin-top: 40px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
